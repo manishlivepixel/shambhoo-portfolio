@@ -2,26 +2,81 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Light Mode (Default) */
+    --color-primary: 247, 241, 234; /* Deeper, more pronounced warm seashell cream */
+    --color-secondary: 44, 44, 46;  /* #2C2C2E - Soft charcoal instead of pure black */
+    --color-accent: 198, 161, 91;   
+    --color-accent2: 168, 117, 74;
+    --color-accent3: 74, 31, 39;
+    --vignette-opacity: 0.15; /* Much softer vignette in light mode */
+  }
+
+  .dark {
+    /* Dark Mode */
+    --color-primary: 11, 11, 13;    /* #0B0B0D */
+    --color-secondary: 247, 241, 234; /* Deeper seashell text */
+    --color-accent: 198, 161, 91;
+    --color-accent2: 168, 117, 74;
+    --color-accent3: 74, 31, 39;
+    --vignette-opacity: 0.8; /* Heavy moody vignette in dark mode */
+  }
+
+  body {
+    @apply bg-primary text-secondary overflow-x-hidden transition-colors duration-500;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+::-webkit-scrollbar-track {
+  background: rgb(var(--color-primary));
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(var(--color-accent), 0.3);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(var(--color-accent), 0.6);
+}
+
+/* Cinematic film grain effect */
+.film-grain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Cinematic Vignette Overlay */
+.vignette-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 40;
+  background: radial-gradient(circle at center, rgba(var(--color-primary), 0) 30%, rgba(var(--color-primary), var(--vignette-opacity)) 100%);
+}
+
+/* Subtle storyboard lines */
+.storyboard-lines {
+  background-image: 
+    linear-gradient(to right, rgba(var(--color-secondary), 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(var(--color-secondary), 0.03) 1px, transparent 1px);
+  background-size: 120px 120px;
+  background-position: center;
+}
+
+.clip-reveal {
+  clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
 }
