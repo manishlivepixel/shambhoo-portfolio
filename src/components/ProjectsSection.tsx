@@ -4,17 +4,17 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import Image from "next/image";
 
-const categories = ["Feature Films", "2D Projects", "3D Projects", "VFX Projects", "Original Products", "AI"];
+const categories = ["Feature Films", "2D Projects", "3D Projects", "VFX Projects", "Original Products", "AI", "Corporates", "Markets", "Consulting Studios"];
 
 const projectData = {
   "Feature Films": [
     { title: "Legend of Buddha", org: "Pentamedia", role: "Director / India Oscar Entry", img: "/media/projects_all/page5_img3.jpeg" },
-    { title: "Krishana Aur Kamsa", org: "Reliance Animation", role: "2D FLASH", img: "/media/projects_all/page5_img4.jpeg" },
-    { title: "Ghatatkoch", org: "Sun Animatics", role: "Consultant", img: "/media/projects_all/page5_img5.jpeg" },
-    { title: "Mahayoddha Rama", org: "Contiloe Pictures", role: "Consultant", img: "/media/projects_all/page5_img6.jpeg" },
-    { title: "Shakuntala", org: "Dawsen Infotech", role: "Not Released - Consultant", img: "/media/projects_all/page5_img7.jpeg" },
+    { title: "Krishana Aur Kamsa", org: "Reliance Animation", role: "2D FLASH", img: "/media/projects_all/page5_img6.jpeg" },
+    { title: "Ghatatkoch", org: "Sun Animatics", role: "Consultant", img: "/media/projects_all/page5_img4.jpeg" },
+    { title: "Mahayoddha Rama", org: "Contiloe Pictures", role: "Consultant", img: "/media/projects_all/page5_img5.jpeg" },
+    { title: "Shakuntala", org: "Dawsen Infotech", role: "Not Released - Consultant", img: "/media/projects_all/page5_img13.jpeg" },
     { title: "Ramayana: The Epic", org: "Maya Entertainment", role: "3D", img: "/media/projects_all/page5_img8.jpeg" },
-    { title: "Hanuman Da Damdaar", org: "Percept Pictures", role: "Consultant", img: "/media/projects_all/page5_img4.jpeg" }, // Using placeholder
+    { title: "Hanuman Da Damdaar", org: "Percept Pictures", role: "Consultant", img: "/media/projects_all/page5_img7.jpeg" },
   ],
   "2D Projects": [
     { title: "George the Little Dragon", org: "Sweden", role: "Teaser & Bible", img: "/media/projects_all/page6_img3.jpeg" },
@@ -25,8 +25,8 @@ const projectData = {
     { title: "Pak Pak Pakau", org: "Nick India", role: "2 Seasons", img: "/media/projects_all/page6_img8.jpeg" },
     { title: "Babblarna", org: "Sweden", role: "Ep 26 x 3 Min", img: "/media/projects_all/page6_img9.jpeg" },
     { title: "Kiki Monochichi", org: "USA", role: "13 Ep X 5 Min", img: "/media/projects_all/page6_img10.jpeg" },
-    { title: "Tortel", org: "Caligari Films", role: "26 Ep X 22 min", img: "/media/projects_all/page7_img6.jpeg" },
-    { title: "Captain Discovery", org: "Animation Yoboho Kids", role: "Animation", img: "/media/projects_all/page7_img7.jpeg" },
+    { title: "Tortel", org: "Caligari Films", role: "26 Ep X 22 min", img: "/media/projects_all/page7_img7.jpeg" },
+    { title: "Captain Discovery", org: "Animation Yoboho Kids", role: "Animation", img: "/media/projects_all/page7_img6.jpeg" },
     { title: "Sholay Telefilms", org: "India", role: "Shard Devarajan", img: "/media/projects_all/page7_img8.jpeg" },
     { title: "Mavi Bykus: Dumper and Skoop", org: "Dumper and Skoop", role: "6 epi X 11 min", img: "/media/projects_all/page7_img3.jpeg" },
     { title: "Futuirkon", org: "Chrono Kids", role: "26 Episodes X 11 min", img: "/media/projects_all/page7_img4.jpeg" },
@@ -36,11 +36,11 @@ const projectData = {
   "3D Projects": [
     { title: "Freej Season 4", org: "Dubai", role: "15 Ep X 15 Min", img: "/media/projects_all/page8_img5.jpeg" },
     { title: "NASCAR", org: "UAE", role: "26 Ep X 11 Min", img: "/media/projects_all/page8_img3.jpeg" },
-    { title: "Heroes of the City", org: "Sweden", role: "2 Seasons", img: "/media/projects_all/page8_img6.jpeg" },
-    { title: "King Shakir", org: "Animation LRC", role: "300 characters/sc", img: "/media/projects_all/page8_img7.jpeg" },
-    { title: "Sheara", org: "Shorts Italy", role: "Chris Bangles Associate", img: "/media/projects_all/page8_img4.jpeg" },
+    { title: "Heroes of the City", org: "Sweden", role: "2 Seasons", img: "/media/projects_all/page8_img4.jpeg" },
+    { title: "King Shakir", org: "Animation LRC", role: "300 characters/sc", img: "/media/projects_all/page8_img9.jpeg" },
+    { title: "Sheara", org: "Shorts Italy", role: "Chris Bangles Associate", img: "/media/projects_all/page8_img6.jpeg" },
     { title: "Drone Cats", org: "Germany", role: "26 Ep X 11 Min", img: "/media/projects_all/page8_img8.jpeg" },
-    { title: "The Girl who Cried flowers", org: "USA", role: "13 Ep X 5 Min", img: "/media/projects_all/page8_img9.jpeg" },
+    { title: "The Girl who Cried flowers", org: "USA", role: "13 Ep X 5 Min", img: "/media/projects_all/page8_img7.jpeg" },
   ],
   "VFX Projects": [
     { title: "The Goatlife", org: "Director David Blessy", role: "VFX Production", img: "/media/projects_all/page9_img3.jpeg" },
@@ -54,18 +54,75 @@ const projectData = {
     { title: "Area 51 3D", org: "Sitcom News", role: "3D", img: "/media/projects_all/page10_img7.jpeg" },
   ],
   "AI": [
-    { title: "Raakh Ke Raahi", org: "AI Generation", role: "Ep. 15 X 3 Min", img: "/media/projects_all/page11_img8.jpeg" },
-    { title: "Krishna - Antim Yatra", org: "AI Generation", role: "Ep.15 X 2 Min", img: "/media/projects_all/page11_img9.jpeg" },
-    { title: "Shadows of Mumbai", org: "AI Generation", role: "Ep. 24 X 3 Min", img: "/media/projects_all/page11_img10.jpeg" },
+    { title: "Raakh Ke Raahi", org: "AI Generation", role: "Ep. 15 X 3 Min", img: "/media/projects_all/page11_img10.jpeg" },
+    { title: "Krishna - Antim Yatra", org: "AI Generation", role: "Ep.15 X 2 Min", img: "/media/projects_all/page11_img8.jpeg" },
+    { title: "Shadows of Mumbai", org: "AI Generation", role: "Ep. 24 X 3 Min", img: "/media/projects_all/page11_img12.jpeg" },
     { title: "Raavan", org: "AI Generation", role: "Ep. 10 X 2 Min", img: "/media/projects_all/page11_img11.jpeg" },
-    { title: "Vishwamitra", org: "AI Generation", role: "Ep. 15 X 3 Min", img: "/media/projects_all/page11_img12.jpeg" },
+    { title: "Vishwamitra", org: "AI Generation", role: "Ep. 15 X 3 Min", img: "/media/projects_all/page11_img9.jpeg" },
     { title: "Kaalrajya", org: "AI Generation", role: "Ep.25 X 3 Min", img: "/media/projects_all/page11_img13.jpeg" },
-    { title: "Kaisa Zombie", org: "AI Generation", role: "Ep. 30 X 3 Min", img: "/media/projects_all/page12_img8.jpeg" },
-    { title: "Parashuram", org: "AI Generation", role: "Ep.24 X 2 Min", img: "/media/projects_all/page12_img9.jpeg" },
-    { title: "Kaliyug ka Chanakya", org: "AI Generation", role: "Ep. 24 X 3 Min", img: "/media/projects_all/page12_img10.jpeg" },
-    { title: "Karmik Zulu", org: "AI Generation", role: "Ep. 30 X 3 Min", img: "/media/projects_all/page12_img11.jpeg" },
-    { title: "Ghamand", org: "AI Generation", role: "Ep.24 X 3 Min", img: "/media/projects_all/page12_img12.jpeg" },
+    { title: "Kaisa Zombie", org: "AI Generation", role: "Ep. 30 X 3 Min", img: "/media/projects_all/page12_img9.jpeg" },
+    { title: "Parashuram", org: "AI Generation", role: "Ep.24 X 2 Min", img: "/media/projects_all/page12_img11.jpeg" },
+    { title: "Kaliyug ka Chanakya", org: "AI Generation", role: "Ep. 24 X 3 Min", img: "/media/projects_all/page12_img8.jpeg" },
+    { title: "Karmik Zulu", org: "AI Generation", role: "Ep. 30 X 3 Min", img: "/media/projects_all/page12_img12.jpeg" },
+    { title: "Ghamand", org: "AI Generation", role: "Ep.24 X 3 Min", img: "/media/projects_all/page12_img10.jpeg" },
     { title: "Konsi Duniya", org: "AI Generation", role: "Ep. 30 X 3 Min", img: "/media/projects_all/page12_img13.jpeg" }
+  ],
+  "Corporates": [
+    { title: "Pentamedia Graphics", org: "Chennai", role: "Assistant to General Manager", img: "/media/projects_all/page4_img2.jpeg" },
+    { title: "Colorchips India", org: "Hyderabad", role: "COO", img: "/media/projects_all/page4_img3.jpeg" },
+    { title: "Kingdom Animasia", org: "Manila", role: "General Manager", img: "/media/projects_all/page4_img4.jpeg" },
+    { title: "Reliance Media Works", org: "Pune and Mumbai", role: "Sr. VP Feature Films", img: "/media/projects_all/page4_img5.jpeg" },
+    { title: "Maya Entertainment", org: "Mumbai", role: "Sr. VP Operations", img: "/media/projects_all/page4_img6.jpeg" },
+    { title: "Anibrain Digital Solutions", org: "Pune", role: "VP Strategy & Business Dev", img: "/media/projects_all/page4_img7.jpeg" }
+  ],
+  "Markets": [
+    { title: "Cartoons on the bay", org: "Market", role: "Event", img: "/media/projects_all/page13_img2.jpeg" },
+    { title: "Kid Screen", org: "Market", role: "Event", img: "/media/projects_all/page13_img3.jpeg" },
+    { title: "MIPCOM", org: "Market", role: "OCT 13-16", img: "/media/projects_all/page13_img4.jpeg" },
+    { title: "MIP Junior", org: "Market", role: "OCT 11-12", img: "/media/projects_all/page13_img5.jpeg" },
+    { title: "Filmart", org: "Market", role: "MAR 17-20", img: "/media/projects_all/page13_img6.jpeg" },
+    { title: "ACE Fair", org: "Market", role: "SEP 17-20", img: "/media/projects_all/page13_img7.jpeg" },
+    { title: "Cartoon Forum", org: "Market", role: "SEP 15-18", img: "/media/projects_all/page13_img8.jpeg" },
+    { title: "AniMela Festival", org: "Market", role: "Feb 19-22", img: "/media/projects_all/page13_img9.jpeg" },
+    { title: "Desi Toons", org: "Market", role: "Nov 1-2", img: "/media/projects_all/page13_img10.jpeg" },
+    { title: "ATF", org: "Market", role: "DEC 2-5", img: "/media/projects_all/page13_img11.jpeg" },
+    { title: "FICCI", org: "Market", role: "Apr 14-19", img: "/media/projects_all/page13_img12.jpeg" },
+    { title: "TIFFCOM", org: "Market", role: "OCT 29-31", img: "/media/projects_all/page13_img13.jpeg" },
+    { title: "MIP TV", org: "Market", role: "FEB 22-24", img: "/media/projects_all/page13_img14.jpeg" },
+    { title: "Annecy Festival", org: "Market", role: "Jun 21-27", img: "/media/projects_all/page13_img15.jpeg" },
+    { title: "Comic Con India", org: "Market", role: "Event", img: "/media/projects_all/page13_img16.jpeg" }
+  ],
+  "Consulting Studios": [
+    { title: "Shemaroo Entertainment", org: "Mumbai", role: "Consulting", img: "/media/projects_all/page14_img3.jpeg" },
+    { title: "Sony Yay", org: "Mumbai", role: "Consulting", img: "/media/projects_all/page14_img4.jpeg" },
+    { title: "Contiloe Pictures", org: "Mumbai", role: "Consulting", img: "/media/projects_all/page14_img5.jpeg" },
+    { title: "Live Pixel", org: "Mumbai", role: "Consulting", img: "/media/projects_all/page14_img6.jpeg" },
+    { title: "Artha Animation", org: "Mumbai", role: "Consulting", img: "/media/projects_all/page14_img7.jpeg" },
+    { title: "Crossover Media", org: "Mumbai", role: "Consulting", img: "/media/projects_all/page14_img8.jpeg" },
+    { title: "Quintessential Studio", org: "Mumbai", role: "Consulting", img: "/media/projects_all/page14_img9.jpeg" },
+    { title: "Reflection Studio", org: "Mumbai", role: "Consulting", img: "/media/projects_all/page14_img10.jpeg" },
+    { title: "Venuss Digital Arts", org: "Pune", role: "Consulting", img: "/media/projects_all/page15_img2.jpeg" },
+    { title: "Verve Corporation", org: "Pune", role: "Consulting", img: "/media/projects_all/page15_img3.jpeg" },
+    { title: "Kaizen Studio", org: "Pune", role: "Consulting", img: "/media/projects_all/page15_img4.jpeg" },
+    { title: "Big Animation", org: "Pune", role: "Consulting", img: "/media/projects_all/page15_img5.jpeg" },
+    { title: "Tripixel Studio", org: "Pune", role: "Consulting", img: "/media/projects_all/page15_img6.jpeg" },
+    { title: "Girgit Studios", org: "Pune", role: "Consulting", img: "/media/projects_all/page15_img7.jpeg" },
+    { title: "Animaworks", org: "Pune", role: "Consulting", img: "/media/projects_all/page15_img8.jpeg" },
+    { title: "Pop Corn", org: "Pune", role: "Consulting", img: "/media/projects_all/page15_img9.jpeg" },
+    { title: "Envision VFX", org: "Pune", role: "Consulting", img: "/media/projects_all/page15_img10.jpeg" },
+    { title: "Nectar Pixels Media", org: "Pune", role: "Consulting", img: "/media/projects_all/page15_img11.jpeg" },
+    { title: "Tavrohi Animation", org: "Delhi", role: "Consulting", img: "/media/projects_all/page16_img2.jpeg" },
+    { title: "Mandala Studios", org: "Delhi", role: "Consulting", img: "/media/projects_all/page16_img3.jpeg" },
+    { title: "Prismart Studio", org: "Delhi", role: "Consulting", img: "/media/projects_all/page16_img4.jpeg" },
+    { title: "CDL Studios", org: "Delhi", role: "Consulting", img: "/media/projects_all/page16_img5.jpeg" },
+    { title: "Indie Rise", org: "Chennai", role: "Consulting", img: "/media/projects_all/page17_img2.jpeg" },
+    { title: "DREAMS", org: "Hyderabad", role: "Consulting", img: "/media/projects_all/page17_img3.jpeg" },
+    { title: "Just Animation", org: "Hyderabad", role: "Consulting", img: "/media/projects_all/page17_img4.jpeg" },
+    { title: "Sun Aniamtics", org: "Hyderabad", role: "Consulting", img: "/media/projects_all/page17_img5.jpeg" },
+    { title: "Freebird Animation Studio", org: "Vadodara", role: "Consulting", img: "/media/projects_all/page17_img6.jpeg" },
+    { title: "Mavi Baykus", org: "Türkiye", role: "Consulting", img: "/media/projects_all/page17_img7.jpeg" },
+    { title: "Dawsen Infotech", org: "Kolkata", role: "Consulting", img: "/media/projects_all/page17_img8.jpeg" },
+    { title: "Cloud House", org: "Kolkata", role: "Consulting", img: "/media/projects_all/page17_img9.jpeg" }
   ]
 };
 
